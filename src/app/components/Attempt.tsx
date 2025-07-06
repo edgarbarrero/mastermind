@@ -20,7 +20,7 @@ const Attempt: React.FC<ItemSelectorProps> = ({ attempt }) => {
             <div className="grid grid-cols-4 gap-1 p-6">
                 <div
                   key={attempt[position]}
-                  className={`w-4 h-8 ${colors.find(color => color.label === attempt[position])?.value} rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all duration-200 ring-2 ring-blue-300 scale-140`}
+                  className={`w-4 h-8 ${colors.find(color => color.label === attempt[position])?.value || 'bg-gray-300'} rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all duration-200 ring-2 ring-blue-300 scale-110`}
                 >
                 </div>
             </div>

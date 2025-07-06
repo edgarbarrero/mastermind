@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 interface ItemSelectorProps {
-  onSelect: (selections: { [key: number | string]: number }) => void;
+  onSelect: (selections: { [key: number]: number }) => void;
 }
 
 const AttemptCreator: React.FC<ItemSelectorProps> = ({ onSelect }) => { 
@@ -42,10 +42,10 @@ const AttemptCreator: React.FC<ItemSelectorProps> = ({ onSelect }) => {
                 <button
                   key={color.name}
                   onClick={() => handleColorSelect(position, color.label)}
-                  className={`w-4 ${color.value} rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all duration-200 p-6-${
+                  className={`w-4 h-4 ${color.value} rounded-lg flex items-center justify-center text-white text-xs font-bold transition-all duration-200 ${
                     selections[position] === color.label 
-                      ? 'ring-2 ring-blue-300 scale-140 h-8' 
-                      : 'hover:scale-90 h-4'
+                      ? 'ring-2 ring-blue-300 scale-110' 
+                      : 'hover:scale-105'
                   }`}
                 >
                 </button>
