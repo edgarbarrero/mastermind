@@ -1,6 +1,8 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   return (
@@ -9,31 +11,27 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo/Title */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-gray-800">
-              Mastermind
-            </h1>
+          <Image
+                  className="p-24"
+                  src="/mastermind.png"
+                  alt="Next.js Logo"
+                  width={400}
+                  height={50}
+                  priority
+                />
           </div>
           
           {/* Navigation Items */}
           <div className="flex items-center space-x-8">
-            <a 
-              href="#" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
+            <Link href="/" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               Home
-            </a>
-            <a 
-              href="/rules" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
+            </Link>
+            <Link href="/rules" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               Rules
-            </a>
-            <a 
-              href="#" 
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
+            </Link>
+            <Link href="/about" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
               About
-            </a>
+            </Link>
           </div>
         </div>
       </div>

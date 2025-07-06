@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import AttemptCreator from './AttemptCreator';
+import React, { useState } from 'react'
+import AttemptCreator from './AttemptCreator'
 import Attempt from './Attempt';
 
 const Board: React.FC = () => {
@@ -9,6 +9,7 @@ const Board: React.FC = () => {
 
   const [attempts, setAttempts] = useState<{ [key: number | string]: number; }[]>([]);
   const [isWinner, setIsWinner] = useState<boolean>(false);
+  const [GameOver, setGameOver] = useState<boolean>(false);
 
   const reviewAttempt = (newAttempt: { [key: number]: number }) => {
     const reviewedAttempt = {
@@ -35,6 +36,9 @@ const Board: React.FC = () => {
     if (reviewAttempt['itemsInPosition'] === 4) {
         setIsWinner(true)
     }
+    if (attempts.length == 10){
+      setGameOver(true)
+    }
   }
 
   const handleAttemptCreation = (newAttempt: { [key: number]: number }) => {    
@@ -44,22 +48,47 @@ const Board: React.FC = () => {
       setAttempts(prevAttempts => [...prevAttempts, reviewedAttempt])
   };
 
+  const attemptsFilled = (attempts: { [key: number | string]: number }[]) => {
+    const attemptsToFill = 10 - attempts.length
+    const filledAttempts = [...attempts]
+
+    for (let i = 0; i < attemptsToFill; i++) {
+      filledAttempts.push({
+        itemsInPosition: 0,
+        itemsNotInPosition: 0
+      })
+    }
+
+    return filledAttempts
+  }
+
+
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
-        {isWinner ? 'You win!' : 'Mastermind Game'}
-      </h2>
-      
-      {attempts.map((attempt, index) => (
-        <Attempt key={index} attempt={attempt}/>
-      ))}
-      
-      {!isWinner && (
-        <div className="p-4 bg-gray-100 rounded-lg">
-          <AttemptCreator onSelect={handleAttemptCreation}/>
-        </div>
-      )}
-    </div>
+    <>
+      <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        {isWinner && (
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+            You win!
+          </h2>
+        )}
+        {GameOver && (
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+            Game Over!
+          </h2>
+        )}
+        
+        {!isWinner && !GameOver && (
+          <div className="p-4 bg-gray-100 rounded-lg">
+            <AttemptCreator onSelect={handleAttemptCreation}/>
+          </div>
+        )}
+      </div>
+      <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-4">        
+        {attemptsFilled(attempts).map((attempt, index) => (
+          <Attempt key={index} attempt={attempt}/>
+        ))}
+      </div>
+    </>
   );
 };
 
