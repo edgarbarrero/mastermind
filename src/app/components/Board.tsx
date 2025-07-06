@@ -45,26 +45,21 @@ const Board: React.FC = () => {
   };
 
   return (
-    <>
-
-        <div>
-          {attempts.map((attempt, index) => (
-            <Attempt key={index} attempt={attempt}/>
-          ))}
-            {isWinner && (
-        <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
-            You win!
-          </h2>
+    <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+        {isWinner ? 'You win!' : 'Mastermind Game'}
+      </h2>
+      
+      {attempts.map((attempt, index) => (
+        <Attempt key={index} attempt={attempt}/>
+      ))}
+      
+      {!isWinner && (
+        <div className="p-4 bg-gray-100 rounded-lg">
+          <AttemptCreator onSelect={handleAttemptCreation}/>
         </div>
       )}
-          {!isWinner && (
-            <div className="p-4 bg-gray-200 rounded-lg">
-                <AttemptCreator onSelect={handleAttemptCreation}/>
-            </div>)
-          }
-        </div>
-    </>
+    </div>
   );
 };
 
