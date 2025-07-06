@@ -128,7 +128,7 @@ export default function RulesPage() {
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-blue-500 mt-1">•</span>
-                    <span>Pay attention to the "Present" feedback - it tells you which colors are in the code</span>
+                    <span>Pay attention to the &quot;Present&quot; feedback - it tells you which colors are in the code</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-blue-500 mt-1">•</span>
@@ -144,7 +144,7 @@ export default function RulesPage() {
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
                   You win when you guess all 4 colors in their correct positions! 
-                  The game will display "You win!" and you can start a new game to challenge yourself again.
+                  The game will display &quot;You win!&quot; and you can start a new game to challenge yourself again.
                 </p>
               </section>
             </div>
