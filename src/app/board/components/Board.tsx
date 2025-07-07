@@ -5,7 +5,12 @@ import AttemptCreator from './AttemptCreator'
 import Attempt from './Attempt';
 
 const Board: React.FC = () => {
-  const solution = {1: 1, 2: 2, 3: 3, 4: 4};
+  const solution = {
+    1: Math.floor(Math.random() * 6) + 1,
+    2: Math.floor(Math.random() * 6) + 1,
+    3: Math.floor(Math.random() * 6) + 1,
+    4: Math.floor(Math.random() * 6) + 1
+  };
 
   const [attempts, setAttempts] = useState<{ [key: number | string]: number; }[]>([]);
   const [isWinner, setIsWinner] = useState<boolean>(false);
