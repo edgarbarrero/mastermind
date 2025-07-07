@@ -24,8 +24,8 @@ const Attempt: React.FC<ItemSelectorProps> = ({ attempt }) => {
         <div className="font-bold text-center flex flex-col justify-center items-center bg-gray-200 rounded-lg p-4">      
           <h4>
             <div>
-              {Array(attempt['itemsInPosition']).fill('🟢').join('')}
-              {Array(attempt['itemsNotInPosition']).fill('🟡').join('')}
+              {Array(attempt['itemsInPosition']).fill('🟩').join(' ')}
+              {Array(attempt['itemsNotInPosition']).fill('🟨').join(' ')}
             </div>
           </h4>
         </div>
