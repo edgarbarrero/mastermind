@@ -4,20 +4,20 @@ import Link from 'next/link';
 export default function RulesPage() {
   return (
     <>
-      <main className="min-h-screen bg-gray-50 py-12">
+      <main className="min-h-screen bg-gray-50 py-6 sm:py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
               Mastermind Game Rules
             </h1>
             
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Objective */}
               <section>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-3 sm:mb-4">
                   🎯 Objective
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                   Crack the secret code by guessing the correct combination of colors in the right positions. 
                   You have unlimited attempts to solve the puzzle!
                 </p>
@@ -148,10 +148,10 @@ export default function RulesPage() {
             </div>
 
             {/* Back to Game Button */}
-            <div className="mt-12 text-center">
+            <div className="mt-8 sm:mt-12 text-center">
               <Link 
                 href="/"
-                className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+                className="inline-block bg-blue-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-sm sm:text-base"
               >
                 Back to Game
               </Link>
