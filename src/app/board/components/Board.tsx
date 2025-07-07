@@ -22,9 +22,10 @@ const Board: React.FC = () => {
     Object.entries(newAttempt).forEach(([key, value]) => {
         const solutionValue = solution[Number(key) as keyof typeof solution]
 
+        debugger
         if (solutionValue == Number(value)) {
             reviewedAttempt['itemsInPosition'] = (reviewedAttempt['itemsInPosition'] + 1)
-        } else if (Object.values(newAttempt).includes(Number(value))) {
+        } else if (Object.values(newAttempt).includes(Number(solutionValue))) {
             reviewedAttempt['itemsNotInPosition'] = (reviewedAttempt['itemsNotInPosition'] + 1)
         }
     });

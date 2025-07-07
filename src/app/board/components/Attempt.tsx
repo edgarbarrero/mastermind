@@ -21,13 +21,21 @@ const Attempt: React.FC<ItemSelectorProps> = ({ attempt }) => {
             </div>
           </div>
         ))}
-        <div className="font-bold text-center flex flex-col justify-center items-center bg-gray-200 rounded-lg p-4">      
-          <h4>
-            <div>
-              {Array(attempt['itemsInPosition']).fill('🟩').join(' ')}
-              {Array(attempt['itemsNotInPosition']).fill('🟨').join(' ')}
-            </div>
-          </h4>
+        <div className="font-bold text-center flex flex-col justify-center items-center bg-gray-200 rounded-lg p-4 min-w-[110px]">      
+          <div className="flex gap-1">
+            {Array(attempt['itemsInPosition']).fill(null).map((_, index) => (
+              <div
+                key={`correct-${index}`}
+                className="w-4 h-4 bg-green-500 rounded-full"
+              />
+            ))}
+            {Array(attempt['itemsNotInPosition']).fill(null).map((_, index) => (
+              <div
+                key={`present-${index}`}
+                className="w-4 h-4 bg-yellow-500 rounded-full"
+              />
+            ))}
+          </div>
         </div>
 
       </div>
