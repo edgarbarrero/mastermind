@@ -9,7 +9,7 @@ export default function Home() {
             className="p-4 sm:p-8 md:p-24"
             src="/mastermind.png"
             alt="Next.js Logo"
-            width={300}
+            width={500}
             height={60}
             style={{
               padding: '0px',
@@ -19,7 +19,7 @@ export default function Home() {
             className="p-4 sm:p-8 md:p-24"
             src="/wooden-mastermind.png"
             alt="Next.js Logo"
-            width={350}
+            width={400}
             height={60}
             style={{
               padding: '0px',
