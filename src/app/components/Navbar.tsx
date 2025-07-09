@@ -32,6 +32,20 @@ const Navbar: React.FC = () => {
             <Link href="/about" className="text-gray-600 hover:text-gray-900 px-2 sm:px-3 py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors duration-200">
               About
             </Link>
+            {/* User Icon */}
+            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200 cursor-pointer">
+              <svg 
+                className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" 
+                fill="currentColor" 
+                viewBox="0 0 20 20"
+              >
+                <path 
+                  fillRule="evenodd" 
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" 
+                  clipRule="evenodd" 
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

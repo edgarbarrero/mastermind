@@ -49,7 +49,7 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/auth/register', {
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,8 @@ const RegisterForm: React.FC = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
+          password_confirmation: formData.confirmPassword
         }),
       });
 
@@ -68,7 +69,7 @@ const RegisterForm: React.FC = () => {
         localStorage.setItem('user', JSON.stringify(data.user));
         
         // Redirect to game
-        router.push('/board');
+        router.push('/');
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Registration failed');
