@@ -22,10 +22,10 @@ export default function RulesPage() {
               </section>
 
                 <Image
-                  className="p-24"
+                  className="p-4 sm:p-8 md:p-24"
                   src="/axolotes.png"
                   alt="Next.js Logo"
-                  width={800}
+                  width={1024}
                   height={100}
                   priority
                 />
