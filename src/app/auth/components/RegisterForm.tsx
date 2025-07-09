@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface RegisterFormData {
   name: string;
@@ -12,6 +13,7 @@ interface RegisterFormData {
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState<RegisterFormData>({
     name: '',
     email: '',
@@ -64,9 +66,9 @@ const RegisterForm: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Store token in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Use the auth context to login
+        login(data.user, data.token);
         
         // Redirect to game
         router.push('/');

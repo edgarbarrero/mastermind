@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface LoginFormData {
   email: string;
@@ -10,6 +11,7 @@ interface LoginFormData {
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -41,9 +43,9 @@ const LoginForm: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Store token in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Use the auth context to login
+        login(data.user, data.token);
         
         // Redirect to game
         router.push('/board');
