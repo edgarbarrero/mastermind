@@ -34,7 +34,6 @@ const Navbar: React.FC = () => {
             <Link href="/about" className="text-gray-600 hover:text-gray-900 px-2 sm:px-3 py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors duration-200">
               About
             </Link>
-            
             {/* User Section */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
