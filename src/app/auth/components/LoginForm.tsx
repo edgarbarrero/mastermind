@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../contexts/AuthContext';
-import { loginUser } from '../../api/auth/login/route';
+
 
 interface LoginFormData {
   email: string;
@@ -12,7 +11,6 @@ interface LoginFormData {
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { login } = useAuth();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -34,16 +32,30 @@ const LoginForm: React.FC = () => {
     setError('');
 
     try {
-      const data = await loginUser({
-        email: formData.email,
-        password: formData.password
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        }),
       });
-      
-      // Use the auth context to login
-      login(data.user, data.token);
-      
-      // Redirect to game
-      router.push('/board');
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Store token in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Redirect to game
+        router.push('/board');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Login failed');
+      }
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Network error. Please try again.');
     } finally {
