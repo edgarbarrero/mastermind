@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../contexts/AuthContext';
+import { useAuthMutation } from '../../../lib/swr';
 
 interface RegisterFormData {
   name: string;
@@ -13,7 +14,8 @@ interface RegisterFormData {
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login: authLogin } = useAuth();
+  const { register } = useAuthMutation();
   const [formData, setFormData] = useState<RegisterFormData>({
     name: '',
     email: '',
@@ -51,33 +53,24 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          password_confirmation: formData.confirmPassword
-        }),
+      const { data, error: registerError } = await register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        password_confirmation: formData.confirmPassword
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        
+      if (registerError) {
+        setError(registerError);
+      } else if (data) {
         // Use the auth context to login
-        login(data.user, data.token);
+        authLogin(data.user, data.token);
         
         // Redirect to game
         router.push('/');
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Registration failed');
       }
-    } catch {
-      setError('Network error. Please try again.');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Network error. Please try again.');
     } finally {
       setIsLoading(false);
     }
